@@ -1,12 +1,12 @@
-# React Native UI Templates
+# WhosMessage - HK Short Message Spam Detection Application
 
-Free UI templates created in react-native.
+Hong Kong Short Message Spam Detection Application using Machine Learning (Written by Owen Chan, created in React Native)
 
 <p align="center">
   <img alt="How to create project specific local plugin | Ionic 6 | Capacitor" src="https://repository-images.githubusercontent.com/329723227/62ff9135-2763-4fba-ae7f-0b1eefa0ea56" height="200px">
 </p>
 
-## 🧬 Samples
+## 🧬 Perlimary Result
 | Project | |
 | :--- | --- |
 | **[> Expo Snack](https://snack.expo.io/@ashu_dubey/react-native-ui-templates)** (Not handled for web yet). |  |
