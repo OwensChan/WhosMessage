@@ -16,9 +16,13 @@ The Android Application would like to achieve the following goals:
 •	Enhance the knowledge of spam/ham message determination and gear up the awareness
 
 The website output result from 3 sources:
+
 Machine Learning model trained using Simple Neural Network
+
 ChatGPT
+
 Google Bard
+
 All data submitted would be stored in the AWS DynamoDB for future model training purposes.
 
 
