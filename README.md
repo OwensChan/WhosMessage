@@ -8,8 +8,11 @@ Hong Kong Short Message Spam Detection Application using Machine Learning in a M
 Project
 This is a React Native Android Project for Hong Kong Short Message Spam Detection Application in a Machine Learning Approach
 The Android Application would like to achieve the following goals:
+
 •	Less management time to keep tracking ingress short messages with their category (Spam/Ham)
+
 •	Provide a simple and direct detection result with given a brief description of message categories
+
 •	Enhance the knowledge of spam/ham message determination and gear up the awareness
 
 The website output result from 3 sources:
