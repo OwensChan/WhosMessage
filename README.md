@@ -25,6 +25,17 @@ Google Bard
 
 All data submitted would be stored in the AWS DynamoDB for future model training purposes.
 
+## 🧬 Screen
+In our mobile application “WhosMessage”, there are 4 main pages in total as the below:
+
+•	Onboarding page – illustrate to the first-time user the current problem and ours benefit
+
+•	Short Message List Page - show all message with its category (Spam / Ham)
+
+•	Short Message Detail Page – display the detail message information with the result from ChatGPT/Bard
+
+•	Education/Training Page - teach user how to classify the message category
+
 
 # 💪🏼 Getting Started
 ## Running on Android emulator - Development
