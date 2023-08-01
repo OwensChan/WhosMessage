@@ -27,33 +27,26 @@ All data submitted would be stored in the AWS DynamoDB for future model training
 npm install
 ```
 
-### (Running on Android emulator) Step 2: Build Android Application installer (.apk) for the first time and Run Android Application
+### Step 2: Build the Android Application installer (.apk) for the first time and Run Android Application
 ```bash
 npx react-native run-android
 ```
 
-### (Running on Android emulator) Step 3: For upcoming use, Run Android Application
+### Step 3: For upcoming use, Run Android Application
 ```bash
 npx react-native start
 ```
 
-## Running on Android emulator - In Production
-### Step 1: Start the Metro Server
+## Running on Android physical phone - In Production
+### Step 1: Generate a keystore for Android App compilation
 ```bash
 # using npm to install dependencies
-npm install
+keytool -genkey -v -keystore whosmessage.keystore -alias whosmessage -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-### (Running on Android emulator) Step 2: Build Android Application installer (.apk) for the first time and Run Android Application
+### Step 2: Move the keystore to the project location and bind with React Native (android\app\build.gradle)
+
+### Step 3: Android Application Installer - APK Generation
 ```bash
-npx react-native run-android
+./gradlew assembleRelease
 ```
-
-### (Running on Android emulator) Step 3: For upcoming use, Run Android Application
-```bash
-npx react-native start
-```
-
-
-
-
