@@ -108,14 +108,6 @@ const HomeScene: React.FC = () => {
 
   const [isGrid, setGrid] = useState(true);
 
-  const onTemplateClicked = (temp: (typeof DEMOS)[0]) => {
-    if (temp.screenName) {
-      navigation.navigate(temp.screenName);
-    } else {
-      showToast('Coming soon...');
-    }
-  };
-
   return (
     <SafeAreaView
       style={{ flex: 1, marginTop: inset.top ? inset.top : 24 }}
@@ -130,19 +122,6 @@ const HomeScene: React.FC = () => {
         >
           <Icon name="menu" size={25} color="black" />
         </MyPressable>
-        <Text style={styles.headerText}>React-Native UI</Text>
-        <MyPressable
-          style={{ marginRight: 8 }}
-          android_ripple={{ color: 'grey', radius: 20, borderless: true }}
-          touchOpacity={0.6}
-          onPress={() => setGrid(!isGrid)}
-        >
-          <Icon
-            name={isGrid ? 'dashboard' : 'view-agenda'}
-            size={25}
-            color="black"
-          />
-        </MyPressable>
       </View>
 
       <FlatList
@@ -155,7 +134,7 @@ const HomeScene: React.FC = () => {
         renderItem={data => (
           <ListItem
             {...{ data, isGrid }}
-            onScreenClicked={() => onTemplateClicked(data.item)}
+            onScreenClicked={() => navigation.navigate(data.item)}
           />
         )}
         keyExtractor={item => item.name}

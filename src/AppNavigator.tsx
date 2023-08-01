@@ -2,7 +2,8 @@ import React from 'react';
 import { StatusBar, StyleSheet, useWindowDimensions } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   HomeScene,
   DrawerContent,
@@ -10,17 +11,14 @@ import {
   FeedbackScene,
   InviteFriendScene,
 } from '.';
-import { CourseInfoScreen, HomeDesignCourse } from './design_course';
+import { CourseInfoScreen, HomeDesignCourse, HomeScreen } from './design_course';
 import { IntroductionAnimationScreen } from './introduction_animation';
+import  AboutUsScene from './AboutUsScene';
+import  SettingScene from './SettingScene';
 
 const Drawer = createDrawerNavigator();
-/**
- * TODO:- Temporarily using r-nav-stack instead of r-nav-native-stack cause of following issue:
- * https://github.com/react-navigation/react-navigation/issues/10941
- * Replace with r-nav-native-stack, once this is fixed.
- */
+
 const Stack = createStackNavigator();
-// const Stack = createNativeStackNavigator();
 
 const DrawerNavigator: React.FC = () => {
   const window = useWindowDimensions();
@@ -40,19 +38,34 @@ const DrawerNavigator: React.FC = () => {
         headerShown: false,
       }}
       drawerContent={props => <DrawerContent {...props} />}
-      // this is just to enable shadow/elevation style on drawer, as it fallback to JS drawer solution instead of native one (v6)
-      // as explained here:- https://github.com/react-navigation/react-navigation/issues/10946#issuecomment-1287082343
       detachInactiveScreens={false}
     >
-      <Drawer.Screen name="home" component={HomeScene} />
+      <Drawer.Screen name="DesignCourse" component={HomeDesignCourse} />
       <Drawer.Screen name="help" component={HelpScene} />
       <Drawer.Screen name="feedback" component={FeedbackScene} />
       <Drawer.Screen name="invite_friend" component={InviteFriendScene} />
+      <Drawer.Screen name="about_us" component={AboutUsScene} />
+       <Drawer.Screen name="setting" component={SettingScene} />
     </Drawer.Navigator>
   );
 };
 
 export default () => {
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
+
+  React.useEffect(() => {
+    const checkappData = async () => {
+      const appData = await AsyncStorage.getItem('isAppFirstLaunched');
+      if (appData == null) {
+        setIsAppFirstLaunched(true);
+        AsyncStorage.setItem('isAppFirstLaunched', 'false');
+      } else {
+        setIsAppFirstLaunched(false);
+      }
+    };
+    checkappData();
+  }, []);
+
   return (
     <>
       <StatusBar
@@ -62,15 +75,12 @@ export default () => {
       />
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {  isAppFirstLaunched && (
+                <Stack.Screen name="onBoarding" component={IntroductionAnimationScreen} />
+        )}
         <Stack.Screen name="MainDrawer" component={DrawerNavigator} />
-        <Stack.Group>
-          <Stack.Screen name="DesignCourse" component={HomeDesignCourse} />
-          <Stack.Screen name="CourseInfo" component={CourseInfoScreen} />
-        </Stack.Group>
-        <Stack.Screen
-          name="onBoarding"
-          component={IntroductionAnimationScreen}
-        />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="CourseInfo" component={CourseInfoScreen} />
       </Stack.Navigator>
     </>
   );

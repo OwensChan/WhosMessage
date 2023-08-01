@@ -44,7 +44,7 @@ const InviteFriendScene: React.FC = () => {
         Are you one of those who makes everything{'\n'} at the last moment?
       </Text>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <MyPressable style={styles.button} android_ripple={{ color: 'grey' }}>
+        <MyPressable style={styles.button} android_ripple={{ color: 'grey' }} onPress={() => navigation.toggleDrawer()}>
           <Icon name="share" size={25} color="white" />
           <Text style={styles.buttonText}>Share</Text>
         </MyPressable>

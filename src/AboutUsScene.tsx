@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  TextInput,
+  Image,
   Platform,
   StatusBar,
-  Image,
-  KeyboardAvoidingView,
   useWindowDimensions,
-  ScrollView,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -21,7 +19,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import MyPressable from './components/MyPressable';
 import { AppImages } from './assets';
 
-const FeedbackScene: React.FC = () => {
+const AboutUsScene: React.FC = (props) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation<DrawerNavigationProp<{}>>();
   const { top } = useSafeAreaInsets();
@@ -30,47 +28,25 @@ const FeedbackScene: React.FC = () => {
   const marginTop = Platform.OS === 'ios' ? top : StatusBar.currentHeight ?? 24;
 
   return (
+
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
       style={{ flex: 1, backgroundColor: '#FEFEFE' }}
     >
-      <ScrollView>
-        <KeyboardAvoidingView behavior="position">
-          <Image
-            style={[
-              styles.image,
-              { width: imageSize, height: imageSize, marginTop },
-            ]}
-            source={AppImages.feedbackImage}
-            resizeMode="cover"
-          />
-          <Text style={styles.title}>Your FeedBack</Text>
-          <Text style={styles.subTitle}>
-            Give your best time for this moment.
-          </Text>
-          <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.input}
-              placeholder="Enter your feedback..."
-              placeholderTextColor="#313A44"
-              multiline
-            />
-          </View>
-
-          <MyPressable style={styles.button} android_ripple={{ color: 'grey' }}>
-            <Text style={styles.buttonText}>Send</Text>
-          </MyPressable>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      
+      <WebView source={{ uri: "https://wp.cs.hku.hk/2022/msp22007/about-us/" }} />
 
       <MyPressable
         style={[styles.menuBtn, { marginTop: marginTop + 8 }]}
         android_ripple={{ color: 'grey', radius: 20, borderless: true }}
-        onPress={() => navigation.openDrawer()}
+        onPress={() => navigation.toggleDrawer()}
       >
-        <Icon name="menu" size={25} color="black" />
+
+        <Icon name="menu" size={25} color="white" />
       </MyPressable>
     </SafeAreaView>
+
+
   );
 };
 
@@ -93,37 +69,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingTop: 16,
   },
-  inputContainer: {
-    minHeight: 80,
-    maxHeight: 160,
-    marginTop: 16,
-    marginHorizontal: 32,
-    padding: 16,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    elevation: 8,
-    shadowColor: 'rgba(158, 158, 158, 0.8)',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.8,
-    shadowRadius: 8,
-  },
-  input: {
-    height: 48,
-    color: 'black',
-    fontSize: 16,
-    fontFamily: 'WorkSans-Regular',
-    textAlignVertical: 'top',
-  },
   button: {
-    width: 120,
+    flexDirection: 'row',
+    width: 140,
     height: 40,
     padding: 8,
-    marginTop: 16,
-    alignSelf: 'center',
-    justifyContent: 'center',
     backgroundColor: 'dodgerblue',
     borderRadius: 4,
     elevation: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     color: 'white',
@@ -138,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FeedbackScene;
+export default AboutUsScene;

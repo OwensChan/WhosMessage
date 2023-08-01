@@ -35,7 +35,7 @@ interface DrawerItemProps extends DrawerScene {
 }
 
 const DRAWER_SCENES: DrawerScene[] = [
-  { label: 'Home', icon: 'home', routeKey: 'home' },
+  { label: 'Home', icon: 'home', routeKey: 'DesignCourse' },
   {
     label: 'Help',
     icon: AppImages.support_icon,
@@ -45,7 +45,9 @@ const DRAWER_SCENES: DrawerScene[] = [
   { label: 'Feedback', icon: 'help', routeKey: 'feedback' },
   { label: 'Invite Friend', icon: 'group', routeKey: 'invite_friend' },
   { label: 'Rate the app', icon: 'share' },
-  { label: 'About Us', icon: 'info' },
+  { label: 'About Us', icon: 'info' , routeKey: 'about_us'},
+  { label: 'Setting', icon: 'info' , routeKey: 'setting'},
+];
 ];
 
 const getActiveRouteState = (
@@ -176,11 +178,6 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
           />
         ))}
       </DrawerContentScrollView>
-
-      <MyPressable style={styles.signOutBtnStyle}>
-        <Text style={styles.signOutText}>Sign Out</Text>
-        <Icon name="power-settings-new" size={20} color="red" />
-      </MyPressable>
     </SafeAreaView>
   );
 };
@@ -233,18 +230,6 @@ const styles = StyleSheet.create({
   divider: {
     backgroundColor: 'darkgrey',
     height: StyleSheet.hairlineWidth,
-  },
-  signOutBtnStyle: {
-    flexDirection: 'row',
-    padding: 16,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: 'darkgrey',
-  },
-  signOutText: {
-    flex: 1,
-    color: 'black',
-    fontSize: 16,
-    fontFamily: 'WorkSans-SemiBold',
   },
 });
 
